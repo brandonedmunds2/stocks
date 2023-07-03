@@ -1,6 +1,7 @@
 import argparse
 import os
 
+
 def get_args():
     parser = argparse.ArgumentParser(
         description="stocks"
@@ -16,6 +17,7 @@ def get_args():
     )
     args = parser.parse_args()
     return args
+
 
 def setup_env(args):
     if not os.path.exists(args.output_directory_path):
