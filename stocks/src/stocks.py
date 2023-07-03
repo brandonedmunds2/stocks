@@ -26,6 +26,7 @@ def annual_perc(tickers):
     end_data = yf.download(' '.join(tickers), start=end1,
                            end=end).iloc[-1, :]['Close']
     perc = end_data/start_data
+    perc = perc.dropna()
     return perc
 
 
@@ -34,6 +35,7 @@ def main():
     interface.setup_env(args)
     tickers = load_tickers(args)
     perc = annual_perc(tickers)
+    perc.to_csv(os.path.join(args.output_directory_path, "perc.csv"))
     perc.sort_values(ascending=False)[:20].plot.bar()
     plt.show()
 
